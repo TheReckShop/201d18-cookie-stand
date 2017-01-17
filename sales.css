@@ -1,0 +1,9 @@
+table {
+  font-family: sans-serif, Verdana, Arial;
+  color: #111111;
+  width: 600px;
+}
+
+td {
+  padding: 7px 10px 10px 10px;
+}
