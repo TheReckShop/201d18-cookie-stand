@@ -2,9 +2,11 @@
 
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-var dailyTotal = this.totalDailyCookieSales;
+var dailyTotal = [];
 
-var locations = ['First and Pike', 'SeaTac Airport', 'Seattle Center', 'Capital Hill', 'Alki'];
+var locations = ['First and Pike', 'SeaTac Airport', 'Seattle Center', 'Capital Hill', 'Alki', 'Totals'];
+
+var headerLocations = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', 'Daily Location Totals'];
 
 // This is where I created the constructor for  taking in cookie store info
 
@@ -119,18 +121,22 @@ CookieStores.prototype.renderAlki = function () {
 
 var tableHead = function() {
   var tableHeader = document.getElementById('header-row');
-  for (var i = 0; i < hours.length; i++) {
+  for (var i = -1; i < headerLocations.length; i++) {
     var liEl = document.createElement('th');
-    liEl.textContent = hours[i];
+    liEl.textContent = headerLocations[i];
     tableHeader.appendChild(liEl);
   }
 };
 
 var tableFoot = function() {
-  var tableHeadEl = document.getElementById('footer-row');
-  for (var i = 0; i < locations.length; i++) {
+  var tableFooterEl = document.getElementById('footer-row');
+  var tHead = document.createElement('th');
+  tableFooterEl.appendChild(tHead);
+  tHead.textContent = locations[5];
+  for (var i = -1; i < hours.length; i++) {
     var liEl = document.createElement('td');
-    // liEl.textContent =
+    liEl.textContent = 'total';
+    tableFooterEl.appendChild(liEl);
   }
 };
 tableHead();
@@ -155,6 +161,7 @@ capitalHillStore.renderCapital();
 alkiStore.calcRandomCustPerHour();
 alkiStore.calcTotalCookiesSoldPerHour();
 alkiStore.renderAlki();
+tableFoot();
 //
 // var alki = {
 //   locationName: 'Alki',
