@@ -119,6 +119,24 @@ CookieStores.prototype.renderAlki = function () {
   emptyUL.appendChild(liEl);
 };
 
+// console.log(getName.value);
+
+CookieStores.prototype.renderInput = function() {
+  this.calcTotalCookiesSoldPerHour();
+  var emptyUL = document.getElementById('input-row');
+  var tHead = document.createElement('th');
+  tHead.textContent = this.locationName;
+  emptyUL.appendChild(tHead);
+  for (var i = 0; i < hours.length; i++) {
+    var liEl = document.createElement('td');
+    liEl.textContent = this.totalCookiesSoldPerHour[i];
+    emptyUL.appendChild(liEl);
+  }
+  liEl = document.createElement('td');
+  liEl.textContent = this.totalDailyCookieSales;
+  emptyUL.appendChild(liEl);
+};
+
 var tableHead = function() {
   var tableHeader = document.getElementById('header-row');
   for (var i = -1; i < headerLocations.length; i++) {
@@ -140,12 +158,22 @@ var tableFoot = function() {
   }
 };
 tableHead();
+var formEl = document.getElementById('first-form');
+formEl.addEventListener('submit', function(event){
+  event.preventDefault();
+  event.stopPropagation();
+  var elements = formEl.elements;
+  var storename = elements.storename.value;
+  console.log(storename);
+  var newStore = new CookieStores(storename, 2, 3, 5);
+  newStore.renderInput();
+  // var a = storename;
+});
 var firstAndPikeStore = new CookieStores('First And Pike', 23, 65, 6.3);
 var seaTacAirportStore = new CookieStores('SeaTac Airport', 3, 24, 1.2);
 var seattleCenterStore = new CookieStores('Seattle Center', 11, 38, 3.7);
 var capitalHillStore = new CookieStores('Capital Hill', 20, 38, 2.3);
 var alkiStore = new CookieStores('Alki', 2, 16, 4.6);
-
 firstAndPikeStore.calcRandomCustPerHour();
 firstAndPikeStore.calcTotalCookiesSoldPerHour();
 firstAndPikeStore.renderFirst();
@@ -161,4 +189,5 @@ capitalHillStore.renderCapital();
 alkiStore.calcRandomCustPerHour();
 alkiStore.calcTotalCookiesSoldPerHour();
 alkiStore.renderAlki();
+
 tableFoot();
