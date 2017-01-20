@@ -24,7 +24,7 @@ function CookieStores(locationName, minCustPerHour, maxCustPerHour, avgCookiesPe
 CookieStores.prototype.calcRandomCustPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
     this.randomCustPerHour.push(Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour);
-    console.log(this.randomCustPerHour);
+    console.log('random cust' + this.randomCustPerHour);
   }
 };
 
@@ -110,8 +110,10 @@ formEl.addEventListener('submit', function(event){
   var minCust = elements.mincust.value;
   var maxCust = elements.maxCustPerHour.value;
   var avgCust = elements.avgCustPerHour.value;
-  console.log(storename);
-  console.log(minCust);
+  console.log('s' + storename);
+  console.log('min' + minCust);
+  console.log('max' + maxCust);
+  console.log('avg' + avgCust);
   var newStore = new CookieStores(storename, minCust, maxCust, avgCust);
   newStore.renderInput();
   // var a = storename;
